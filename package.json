@@ -1,7 +1,7 @@
 {
-  "name": "node-module-template",
+  "name": "composite-abort-controller",
   "version": "0.0.0",
-  "description": "Description",
+  "description": "abort controller and abort signal classes that compose multiple abort signals",
   "main": "dist/cjs/index.js",
   "module": "dist/esm/index.js",
   "scripts": {
@@ -11,16 +11,25 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/tjmehta/node-module-template.git"
+    "url": "git+https://github.com/tjmehta/composite-abort-controller.git"
   },
   "keywords": [
+    "abort",
+    "controller",
+    "signal",
+    "composite",
+    "compose",
+    "merge",
+    "multiple",
+    "multi",
+    "combine"
   ],
   "author": "Tejesh Mehta",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/tjmehta/node-module-template/issues"
+    "url": "https://github.com/tjmehta/composite-abort-controller/issues"
   },
-  "homepage": "https://github.com/tjmehta/node-module-template#readme",
+  "homepage": "https://github.com/tjmehta/composite-abort-controller#readme",
   "devDependencies": {
     "@babel/preset-env": "^7.10.2",
     "@babel/preset-typescript": "^7.10.1",
@@ -29,6 +38,10 @@
     "babel-jest": "^26.0.1",
     "jest": "^26.0.1",
     "prettier": "^2.0.5",
+    "times-loop": "^3.0.0",
     "typescript": "^3.9.3"
+  },
+  "dependencies": {
+    "fast-abort-controller": "^2.0.0"
   }
 }
