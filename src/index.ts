@@ -27,7 +27,8 @@ class AbortSignal extends FastAbortSignal {
     const self = this
     this.signals.add(signal)
     if (signal.aborted === true) return
-    signal.addEventListener('abort', function () {
+    signal.addEventListener('abort', function handleAbort() {
+      signal.removeEventListener('abort', handleAbort)
       self.handleAbort(this)
     })
   }
