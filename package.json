@@ -1,6 +1,6 @@
 {
   "name": "composite-abort-controller",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "abort controller and abort signal classes that compose multiple abort signals",
   "main": "dist/cjs/index.js",
   "module": "dist/esm/index.js",
