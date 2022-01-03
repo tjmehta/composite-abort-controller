@@ -42,6 +42,6 @@
     "typescript": "^3.9.3"
   },
   "dependencies": {
-    "fast-abort-controller": "^2.1.0"
+    "fast-abort-controller": "^2.1.1"
   }
 }
