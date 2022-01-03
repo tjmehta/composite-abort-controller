@@ -1,4 +1,4 @@
-import FastAbortController, { FastAbortSignal } from 'fast-abort-controller'
+import { FastAbortController, FastAbortSignal } from 'fast-abort-controller'
 
 import AbortSignalType from './AbortSignalType'
 
@@ -17,19 +17,28 @@ class AbortSignal extends FastAbortSignal {
     }
   }
 
-  private handleAbort = (signal: AbortSignalType) => {
+  private handleAbort = () => {
+    if (this.aborted) return
     // @ts-ignore
     this.aborted = [...this.signals].every((signal) => signal.aborted)
-    if (this.aborted) this.dispatchEvent({ type: 'abort' } as Event)
+    if (this.aborted) {
+      const event =
+        typeof Event != 'undefined'
+          ? new Event('abort')
+          : ({ type: 'abort' } as Event)
+      this.dispatchEvent(event)
+    }
   }
 
   add(signal: AbortSignalType) {
     const self = this
     this.signals.add(signal)
+    // @ts-ignore
+    this.aborted = this.aborted && signal.aborted
     if (signal.aborted === true) return
     signal.addEventListener('abort', function handleAbort() {
       signal.removeEventListener('abort', handleAbort)
-      self.handleAbort(this)
+      self.handleAbort()
     })
   }
 }
@@ -37,6 +46,7 @@ class AbortSignal extends FastAbortSignal {
 export const CompositeAbortSignal = AbortSignal
 
 export default class CompositeAbortController extends FastAbortController {
+  // @ts-ignore
   signal: AbortSignal
 
   constructor(signals?: Iterable<AbortSignalType>) {
