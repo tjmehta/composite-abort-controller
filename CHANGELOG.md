@@ -1,3 +1,7 @@
+# v4.0.0
+
+- patch: dep updates
+
 # v3.0.0
 
 - major: es2020
