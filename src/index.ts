@@ -1,12 +1,12 @@
 import { FastAbortController, FastAbortSignal } from 'fast-abort-controller'
 
-import AbortSignalType from './AbortSignalType'
+import GlobalAbortSignal from './GlobalAbortSignal'
 
 // AbortSignal classes must be named "AbortSignal" to work with node-fetch..
 class AbortSignal extends FastAbortSignal {
-  private signals = new Set<AbortSignalType>()
+  private signals = new Set<GlobalAbortSignal>()
 
-  constructor(signals?: Iterable<AbortSignalType>) {
+  constructor(signals?: Iterable<GlobalAbortSignal>) {
     super()
     if (signals != null) {
       for (const signal of signals) {
@@ -30,7 +30,7 @@ class AbortSignal extends FastAbortSignal {
     }
   }
 
-  add(signal: AbortSignalType) {
+  add(signal: GlobalAbortSignal) {
     const self = this
     this.signals.add(signal)
     // @ts-ignore
@@ -49,12 +49,12 @@ export default class CompositeAbortController extends FastAbortController {
   // @ts-ignore
   signal: AbortSignal
 
-  constructor(signals?: Iterable<AbortSignalType>) {
+  constructor(signals?: Iterable<GlobalAbortSignal>) {
     super()
     this.signal = new CompositeAbortSignal(signals)
   }
 
-  addSignal(signal: AbortSignalType) {
+  addSignal(signal: GlobalAbortSignal) {
     this.signal.add(signal)
   }
 }
