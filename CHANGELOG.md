@@ -1,3 +1,7 @@
+# v4.0.1
+
+- patch: build dir file extension fixes
+
 # v4.0.0
 
 - patch: dep updates
