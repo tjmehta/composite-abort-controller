@@ -1,3 +1,7 @@
+# v3.0.3
+
+- patch: patch updated fast-abort-controller
+
 # v3.0.2
 
 - patch: build dir file extension fixes
