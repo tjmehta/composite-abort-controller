@@ -5,6 +5,7 @@
   "main": "dist/cjs/index.cjs",
   "module": "dist/esm/index.mjs",
   "types": "dist/esm/index.d.ts",
+  "type": "module",
   "exports": {
     ".": {
       "require": "./dist/cjs/index.cjs",
@@ -15,8 +16,8 @@
     "prepublish": "npm run build",
     "build": "npm run build-ts && npm run _build_esm_rename && npm run _build_cjs_rename",
     "build-ts": "tsc -p tsconfig.json && tsc -p tsconfig-cjs.json",
-    "_build_esm_rename": "rename --path dist/esm --find '([^.]+).js$' --replace '$1.mjs' --recursive && rename --path dist/esm --find '([^.]+).js.map$' --replace '$1.mjs.map' --recursive",
-    "_build_cjs_rename": "rename --path dist/cjs --find '([^.]+).js$' --replace '$1.cjs' --recursive && rename --path dist/cjs --find '([^.]+).js.map$' --replace '$1.cjs.map' --recursive",
+    "_build_esm_rename": "rewrite-esm dist/esm",
+    "_build_cjs_rename": "rewrite-cjs dist/cjs",
     "test": "jest --coverage"
   },
   "repository": {
@@ -49,10 +50,11 @@
     "jest": "^26.0.1",
     "prettier": "^2.0.5",
     "rename-recursively": "github:mateja176/rename",
+    "rewrite-cjs-esm-paths": "^1.0.3",
     "times-loop": "^3.0.0",
     "typescript": "^3.9.3"
   },
   "dependencies": {
-    "fast-abort-controller": "^4.0.1"
+    "fast-abort-controller": "^4.0.2"
   }
 }
