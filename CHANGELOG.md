@@ -1,3 +1,7 @@
+# v3.0.5
+
+- patch: patch updated fast-abort-controller
+
 # v3.0.4
 
 - patch: fix build dist cjs and esm
